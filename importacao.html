@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA47 - Importação</title>
+    <link rel="stylesheet" href="importacao.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app-container"> <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+            <img src="logo/logo (2).png" width="32" height="32" alt="Logo" style="object-fit: contain; border-radius: 4px;">
+            </div>
+            <div class="logo-text">
+            <strong>SISTEMA47</strong>
+            <p><span>Controle de Materiais</span></p>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item" href="dashboard.html">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
+            Dashboard
+            </a>
+           
+            <a class="nav-item active" href="importacao.html">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+            Importação
+            </a>
+            <a class="nav-item" href="listagem.html">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7z"/></svg>
+            Listagem
+            </a>
+            <a class="nav-item" href="relatorioseinsights.html">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-3h2v3zm0-5h-2v-2h2v2zm4 5h-2V7h2v10z"/></svg>
+            Relatórios
+            </a>
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            </div>
+            <div class="user-info">
+            <strong>dayane</strong>
+            <span>dayane@edu.pe.senac.br</span>
+            </div>
+        </div>
+
+        <div class="sidebar-logout">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zm-15 0v12h8v-2H4V5h8V3H2v4z"/></svg>
+            Sair
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header>
+            <h1>Importação de Dados</h1>
+            <p class="subtitle">Importe dados de consumo a partir de planilhas Excel ou CSV</p>
+        </header>
+
+        <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Como importar seus dados</strong>
+                <ul>
+                    <li>Baixe o template Excel clicando no botão abaixo</li>
+                    <li>Preencha a planilha com seus dados de consumo</li>
+                    <li>Faça upload do arquivo Excel (.xlsx, .xls) ou CSV</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <section class="card">
+                <div class="card-header">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload de Arquivo</h3>
+                </div>
+                <p class="small-text">Formatos aceitos: .xlsx, .xls, .csv</p>
+                
+                <button class="btn-secondary"><i class="fas fa-file-download"></i> Baixar Template Excel</button>
+
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-icon"><i class="far fa-file-alt"></i></div>
+                    <p>Clique para selecionar arquivo</p>
+                    <span>ou arraste e solte aqui</span>
+                    <input type="file" id="file-input" hidden accept=".xlsx, .xls, .csv">
+                </div>
+            </section>
+
+            <section class="card">
+                <h3>Status da Importação</h3>
+                <p class="small-text">Resumo dos registros processados</p>
+
+                <div class="status-list">
+                    <div class="status-item valid">
+                        <div class="status-info">
+                            <i class="far fa-check-circle"></i>
+                            <div>
+                                <p>Registros Válidos</p>
+                                <span>Prontos para Importação</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-green" id="valid-count">0</span>
+                    </div>
+
+                    <div class="status-item warning">
+                        <div class="status-info">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <p>Com Avisos</p>
+                                <span>Revisão recomendada</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-orange" id="warning-count">0</span>
+                    </div>
+
+                    <div class="status-item invalid">
+                        <div class="status-info">
+                            <i class="far fa-times-circle"></i>
+                            <div>
+                                <p>Registros Inválidos</p>
+                                <span>Não serão importados</span>
+                            </div>
+                        </div>
+                        <span class="badge badge-red" id="invalid-count">0</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<div class="floating-container">
+    <div class="notification-panel" id="notificationPanel">
+        <div class="panel-header">
+            <div class="header-title">
+                <i class="fa-solid fa-bell"></i>
+                <h3>Alertas do Sistema</h3>
+            </div>
+            <button class="close-panel" id="closePanel">&times;</button>
+        </div>
+        
+        <div class="unread-counter">
+            <span><strong>6</strong> alerta(s) não lido(s)</span>
+        </div>
+
+        <div class="panel-content">
+            <div class="mark-all-area">
+                <button class="btn-mark-all">
+                    <i class="fa-regular fa-check-circle"></i>
+                    Marcar todos como lidos
+                </button>
+            </div>
+
+            <div class="alert-item critical">
+                <div class="alert-icon-area">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="alert-main-content">
+                    <div class="alert-title-row">
+                        <strong>Crescimento Crítico na Semana 2</strong>
+                        <span class="alert-badge critical-badge">Crítico</span>
+                    </div>
+                    <p>Consumo aumentou 1006.1% em relação à semana anterior. Valor: R$ 455.940</p>
+                    <div class="alert-tags">
+                        <span class="tag">Semana 2</span>
+                        <span class="tag">variaçao anormal</span>
+                    </div>
+                    <div class="alert-actions">
+                        <button class="action-btn read"><i class="fa-regular fa-check-circle"></i> Marcar como lido</button>
+                        <button class="action-btn dismiss"><i class="fa-solid fa-xmark"></i> Dispensar</button>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+
+    <div class="floating-btn notification-btn" id="openPanel">
+        <i class="fa-solid fa-bell"></i>
+        <span class="notification-badge" id="badgeCount">6</span>
+    </div>
+    
+    <div class="floating-btn chat-btn">
+        <i class="fa-solid fa-comment-dots"></i>
+    </div>
+</div>
+    <script src="importacao.js"></script>
+</body>
+</html>

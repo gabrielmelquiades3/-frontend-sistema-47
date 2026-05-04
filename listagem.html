@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA47 - Listagem de Dados</title>
+    <link rel="stylesheet" href="listagem.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+      
+    <div class="app-container">
+
+        <!-- SIDEBAR NOVA -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <img src="logo/logo (2).png" width="32" height="32" alt="Logo" style="object-fit: contain; border-radius: 4px;">
+                </div>
+                <div class="logo-text">
+                    <strong>SISTEMA47</strong>
+                    <span>Controle de Materiais</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a class="nav-item" href="dashboard.html">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
+                    Dashboard
+                </a>
+                
+                <a class="nav-item" href="importacao.html">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                    Importação
+                </a>
+                <a class="nav-item active" href="listagem.html">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7z"/></svg>
+                    Listagem
+                </a>
+                <a class="nav-item" href="relatorioseinsights.html">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-3h2v3zm0-5h-2v-2h2v2zm4 5h-2V7h2v10z"/></svg>
+                    Relatórios
+                </a>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                </div>
+                <div class="user-info">
+                    <strong>gabriel.studart</strong>
+                    <span>gabriel.studart@edu.pe.senac.br</span>
+                </div>
+            </div>
+
+            <div class="sidebar-logout">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zm-15 0v12h8v-2H4V5h8V3H2v4z"/></svg>
+                Sair
+            </div>
+        </aside>
+        <!-- FIM SIDEBAR -->
+
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>Listagem de Dados</h1>
+                    <p>Visualize, filtre e gerencie os registros de consumo</p>
+                </div>
+            </header>
+
+            <section class="card filter-card">
+                <div class="filter-header">
+                    <i class="fas fa-filter"></i>
+                    <strong>Filtros de Busca</strong>
+                    <span>Encontre registros específicos usando os filtros abaixo</span>
+                    <button class="btn-link-border" onclick="limparFiltros()">Limpar Filtros</button>
+                </div>
+
+                <div class="filter-grid">
+                    <div class="input-field">
+                        <label>Buscar Material</label>
+                        <div class="search-input">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Código ou descrição...">
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <label>Gerência</label>
+                        <select id="selGerencia">
+                            <option value="Todas">Todas</option>
+                            <option value="Gerência de Produção">Gerência de Produção</option>
+                            <option value="Gerência de Manutenção">Gerência de Manutenção</option>
+                            <option value="Gerência de Qualidade">Gerência de Qualidade</option>
+                            <option value="Gerência de Logística">Gerência de Logística</option>
+                            <option value="Gerência Administrativa">Gerência Administrativa</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label>Área</label>
+                        <select id="selArea">
+                            <option value="Todas">Todas</option>
+                            <option value="Produção - Linha 1">Produção - Linha 1</option>
+                            <option value="Produção - Linha 2">Produção - Linha 2</option>
+                            <option value="Manutenção Preventiva">Manutenção Preventiva</option>
+                            <option value="Manutenção Corretiva">Manutenção Corretiva</option>
+                            <option value="Controle de Qualidade">Controle de Qualidade</option>
+                            <option value="Almoxarifado">Almoxarifado</option>
+                            <option value="Expedição">Expedição</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <label>Período</label>
+                        <select id="selPeriodo">
+                            <option value="Todos">Todos</option>
+                            <option value="Jan/2026">Jan/2026</option>
+                            <option value="Fev/2026">Fev/2026</option>
+                            <option value="Mar/2026">Mar/2026</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="results-count">
+                    <span id="countText">25 registro(s) encontrado(s)</span>
+                </div>
+            </section>
+
+            <section class="card table-card">
+                <div class="table-header-info">
+                    <strong>Registros</strong>
+                    <span id="pageIndicator">Página 1 de 3</span>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Semana</th>
+                                <th>Gerência</th>
+                                <th>Área</th>
+                                <th>Material</th>
+                                <th>Quantidade</th>
+                                <th>Valor (R$)</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
+
+                <div class="table-footer">
+                    <span id="paginationText">Mostrando 1 a 10 de 25 registros</span>
+                    <div class="pagination-controls" id="paginationControls"></div>
+                </div>
+            </section>
+
+            <div class="notification-float">
+                <i class="fas fa-bell"></i>
+                <span class="badge">6</span>
+            </div>
+            <div class="chat-float">
+                <i class="fab fa-facebook-messenger"></i>
+            </div>
+        </main>
+    </div>
+    <script src="listagem.js"></script>
+</body>
+</html>
