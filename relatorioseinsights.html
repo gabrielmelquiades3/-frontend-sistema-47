@@ -6,207 +6,169 @@
     <title>SISTEMA47 - Relatórios e Insights</title>
     <link rel="stylesheet" href="relatorio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos do Bloco de IA acoplados ao seu design original */
+        .insights-section { margin-top: 15px; }
+        .insight-block { padding: 16px; border-left: 4px solid #ccd2db; background: #f8fafc; border-radius: 0 8px 8px 0; margin-bottom: 12px; }
+        .insight-block.warning { border-left-color: #f59e0b; background: #fffbeb; }
+        .insight-block.info { border-left-color: #3b82f6; background: #eff6ff; }
+        .insight-block.success { border-left-color: #22c55e; background: #f0fdf4; }
+        .insight-block h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: #1e293b; }
+        .insight-block p { font-size: 0.9rem; color: #475569; line-height: 1.5; }
+    </style>
 </head>
 <body>
 
-<div class="app-container"> <aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-icon">
-      <img src="logo/logo (2).png" width="32" height="32" alt="Logo" style="object-fit: contain; border-radius: 4px;">
+<div class="app-container"> 
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <img src="logo/logo (2).png" width="32" height="32" alt="Logo" style="object-fit: contain; border-radius: 4px;">
+      </div>
+      <div class="logo-text">
+        <strong>SISTEMA47</strong>
+        <p><span>Controle de Materiais</span></p>
+      </div>
     </div>
-    <div class="logo-text">
-      <strong>SISTEMA47</strong>
-      <p><span>Controle de Materiais</span></p>
-    </div>
-  </div>
 
-  <nav class="sidebar-nav">
-    <a class="nav-item" href="dashboard.html">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
-      Dashboard
-    </a>
-   
-    <a class="nav-item" href="importacao.html">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
-      Importação
-    </a>
-    <a class="nav-item" href="listagem.html">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7z"/></svg>
-      Listagem
-    </a>
-    <a class="nav-item active" href="relatorioseinsights.html">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-3h2v3zm0-5h-2v-2h2v2zm4 5h-2V7h2v10z"/></svg>
-      Relatórios
-    </a>
-  </nav>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="dashboard.html">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3zm0 8h8v-6H3zm10 0h8V11h-8zm0-18v6h8V3z"/></svg>
+        Dashboard
+      </a>
+      <a class="nav-item" href="importacao.html">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+        Importação
+      </a>
+      <a class="nav-item" href="listagem.html">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7z"/></svg>
+        Listagem
+      </a>
+      <a class="nav-item active" href="relatorioseinsights.html">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-5h2v5zm4 0h-2v-3h2v3zm0-5h-2v-2h2v2zm4 5h-2V7h2v10z"/></svg>
+        Relatórios
+      </a>
+    </nav>
 
-  <div class="sidebar-user">
-    <div class="user-avatar">
-      <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+     <div class="sidebar-user">
+      <div class="user-avatar">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      <div class="user-info">
+        <strong>gabriel.studart</strong>
+        <span>gabriel.studart@edu.pe.senac.br</span>
+      </div>
     </div>
-    <div class="user-info">
-      <strong>dayane</strong>
-      <span>dayane@edu.pe.senac.br</span>
+    <div class="sidebar-logout">
+      <a href="login.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zm-15 0v12h8v-2H4V5h8V3H2v4z"/></svg>
+      Sair></a>
     </div>
-  </div>
 
-  <div class="sidebar-logout">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zm-15 0v12h8v-2H4V5h8V3H2v4z"/></svg>
-    Sair
-  </div>
-</aside>
+  </aside>
     
-    <main class="main-content">
-        <header class="content-header">
-            <h1> Relatórios e Insights</h1>
-            <p class="subtitle">Análises detalhadas e exportação de dados para Power BI</p>
+  <main class="main-content">
+      <header class="content-header">
+          <h1> Relatórios e Insights</h1>
+          <p class="subtitle">Análises detalhadas e exportação de dados para Power BI</p>
+      </header>
 
-        </header>
+      <section class="section-card">
+          <div>
+              <h3>Exportação de Dados</h3>
+              <p>Exporte relatórios completos para análise externa</p>
+          </div>
+          <div class="export-grid">
+              <button class="exp-btn black"><i class="fa-solid fa-download"></i> <div><strong>Exportar CSV</strong><p><span>Dados tabulares</span></p></div></button>
+              <button class="exp-btn gray"><i class="fa-solid fa-file-excel"></i> <div><strong>Exportar Excel</strong><p><span>Planilha formatada</span></p></div></button>
+              <button class="exp-btn gray"><i class="fa-regular fa-file-pdf"></i> <div><strong>Gerar PDF</strong><p><span>Relatório visual</span></p></div></button>
+              <button class="exp-btn purple"><i class="fa-solid fa-bolt"></i> <div><strong>Power BI</strong><p><span>Integração direta</span></p></div></button>
+          </div>
+      </section>
 
-        <section class="section-card">
-            <div>
-                <h3>Exportação de Dados</h3>
-                <p>Exporte relatórios completos para análise externa</p>
-            </div>
-                
-            <div class="export-grid">
-                <button class="exp-btn black"><i class="fa-solid fa-download"></i> <div><strong>Exportar CSV</strong><p><span>Dados tabulares</span></p></div></button>
-                <button class="exp-btn gray"><i class="fa-solid fa-file-excel"></i> <div><strong>Exportar Excel</strong><p><span>Planilha formatada</span></p></div></button>
-                <button class="exp-btn gray"><i class="fa-regular fa-file-pdf"></i> <div><strong>Gerar PDF</strong><p><span>Relatório visual</span></p></div></button>
-                <button class="exp-btn purple"><i class="fa-solid fa-bolt"></i> <div><strong>Power BI</strong><p><span>Integração direta</span></p></div></button>
-            </div>
-        </section>
+      <section class="stats-grid">
+          <div class="stat-card">
+              <p>Total Movimentado</p>
+              <h3>R$ 1.952.260,00</h3>
+              <span>No período analisado</span>
+          </div>
+          <div class="stat-card">
+              <p>Quantidade Total</p>
+              <h3 class="green-text">55.831</h3>
+              <span>Unidades processadas</span>
+          </div>
+          <div class="stat-card">
+              <p>Média Semanal</p>
+              <h3 class="purple-text">R$ 390.452,00</h3>
+              <span>Por semana</span>
+          </div>
+      </section>
 
-        <section class="stats-grid">
-            <div class="stat-card">
-                <p>Total Movimentado</p>
-                <h3>R$ 1.952.260,00</h3>
-                <span>No período analisado</span>
-            </div>
-            <div class="stat-card">
-                <p>Quantidade Total</p>
-                <h3 class="green-text">55.831</h3>
-                <span>Unidades processadas</span>
-            </div>
-            <div class="stat-card">
-                <p>Média Semanal</p>
-                <h3 class="purple-text">R$ 390.452,00</h3>
-                <span>Por semana</span>
-            </div>
-        </section>
+      <section class="card-section">
+          <h2>Evolução e Projeção de Gasto (IA)</h2>
+          <div class="chart-box">
+              <canvas id="barChart"></canvas>
+          </div>
+      </section>
 
-        <section class="card-section">
-            <h2>Evolução de Consumo por Período</h2>
-            <div class="chart-box">
-                <canvas id="barChart"></canvas>
-            </div>
-        </section>
+      <section class="card-section insights-section">
+          <h2 style="display: flex; align-items: center; gap: 10px; color: #8b5cf6; margin-bottom: 20px;">
+              <i class="fa-solid fa-brain"></i> Relatório Analítico de Compras Futuras
+          </h2>
+          <div id="insightsContainer">
+              <p style="color: gray; font-size: 0.9rem;">Carregando análise preditiva do motor de IA...</p>
+          </div>
+      </section>
 
-       <section class="two-columns">
-    <div class="card-section">
-        <h2 class="ranking-title">
-            <i class="fa-solid fa-medal"></i> Top Materiais Mais Consumidos
-        </h2>
-        <div class="ranking-list" id="rankingList">
-            </div>
-    </div>
-    
-    <div class="card-section">
-        <h2>Comparativo entre Gerências</h2>
-        <div class="chart-box-pie">
-            <canvas id="pieChart"></canvas>
-        </div>
-    </div>
-</section>
+      <section class="two-columns">
+          <div class="card-section">
+              <h2 class="ranking-title">
+                  <i class="fa-solid fa-medal"></i> Top Materiais Mais Consumidos
+              </h2>
+              <div class="ranking-list" id="rankingList"></div>
+          </div>
+          
+          <div class="card-section">
+              <h2>Comparativo entre Gerências</h2>
+              <div class="chart-box-pie">
+                  <canvas id="pieChart"></canvas>
+              </div>
+          </div>
+      </section>
 
-        <section class="card-section">
-            <h2>Análise Detalhada Semanal</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Semana</th>
-                            <th>Quantidade</th>
-                            <th>Valor Total</th>
-                            <th>Variação</th>
-                            <th>Tendência</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"></tbody>
-                </table>
-            </div>
-        </section>
+      <section class="card-section">
+          <h2>Análise Detalhada Semanal</h2>
+          <div class="table-container">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Semana</th>
+                          <th>Quantidade</th>
+                          <th>Valor Total</th>
+                          <th>Variação</th>
+                          <th>Tendência</th>
+                      </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+              </table>
+          </div>
+      </section>
 
-   <section class="card-section pbi-footer">
-    <div class="pbi-header">
-        <i class="fa-solid fa-chart-line pbi-icon"></i>
-        <h3>Integração com Power BI</h3>
-    </div>
-    <p>Conecte o SISTEMA47 diretamente ao seu dashboard corporativo</p>
-    
-    <div class="pbi-options">
-        <button class="btn-pbi-main">Conectar ao Power BI</button>
-        <button class="btn-pbi-outline">Baixar Pacote de Dados</button>
-    </div>
-</section>
+      <section class="card-section pbi-footer">
+          <div class="pbi-header">
+              <i class="fa-solid fa-chart-line pbi-icon"></i>
+              <h3>Integração com Power BI</h3>
+          </div>
+          <p>Conecte o SISTEMA47 diretamente ao seu dashboard corporativo</p>
+          <div class="pbi-options">
+              <button class="btn-pbi-main">Conectar ao Power BI</button>
+              <button class="btn-pbi-outline">Baixar Pacote de Dados</button>
+          </div>
+      </section>
+  </main>
 
-    </main>
-<div class="floating-container">
-    <div class="notification-panel" id="notificationPanel">
-        <div class="panel-header">
-            <div class="header-title">
-                <i class="fa-solid fa-bell"></i>
-                <h3>Alertas do Sistema</h3>
-            </div>
-            <button class="close-panel" id="closePanel">&times;</button>
-        </div>
-        
-        <div class="unread-counter">
-            <span><strong>6</strong> alerta(s) não lido(s)</span>
-        </div>
-
-        <div class="panel-content">
-            <div class="mark-all-area">
-                <button class="btn-mark-all">
-                    <i class="fa-regular fa-check-circle"></i>
-                    Marcar todos como lidos
-                </button>
-            </div>
-
-            <div class="alert-item critical">
-                <div class="alert-icon-area">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <div class="alert-main-content">
-                    <div class="alert-title-row">
-                        <strong>Crescimento Crítico na Semana 2</strong>
-                        <span class="alert-badge critical-badge">Crítico</span>
-                    </div>
-                    <p>Consumo aumentou 1006.1% em relação à semana anterior. Valor: R$ 455.940</p>
-                    <div class="alert-tags">
-                        <span class="tag">Semana 2</span>
-                        <span class="tag">variaçao anormal</span>
-                    </div>
-                    <div class="alert-actions">
-                        <button class="action-btn read"><i class="fa-regular fa-check-circle"></i> Marcar como lido</button>
-                        <button class="action-btn dismiss"><i class="fa-solid fa-xmark"></i> Dispensar</button>
-                    </div>
-                </div>
-            </div>
-
-            </div>
-    </div>
-
-    <div class="floating-btn notification-btn" id="openPanel">
-        <i class="fa-solid fa-bell"></i>
-        <span class="notification-badge" id="badgeCount">6</span>
-    </div>
-    
-  
 </div>
 
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="relatorio.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="relatorio.js"></script>
 </body>
 </html>

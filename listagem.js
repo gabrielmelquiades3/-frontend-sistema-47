@@ -1,33 +1,53 @@
-const bancoDeDados = [
-    { semana: "Sem 1", gerencia: "Gerência de Produção", area: "Produção - Linha 1", material: "10310156", desc: "Material 4", qtd: "653 CX", valor: 19590.00, data: "02/03/2026" },
-    { semana: "Sem 2", gerencia: "Gerência de Produção", area: "Produção - Linha 1", material: "10310156", desc: "Material 4", qtd: "9.728 CX", valor: 291840.00, data: "09/03/2026" },
-    { semana: "Sem 3", gerencia: "Gerência de Produção", area: "Produção - Linha 1", material: "10310156", desc: "Material 4", qtd: "8.279 CX", valor: 248370.00, data: "16/03/2026" },
-    { semana: "Sem 4", gerencia: "Gerência de Produção", area: "Produção - Linha 1", material: "10310156", desc: "Material 4", qtd: "9.750 CX", valor: 292500.00, data: "23/03/2026" },
-    { semana: "Sem 5", gerencia: "Gerência de Produção", area: "Produção - Linha 1", material: "10310156", desc: "Material 4", qtd: "9.369 CX", valor: 281070.00, data: "30/03/2026" },
-    { semana: "Sem 1", gerencia: "Gerência de Produção", area: "Produção - Linha 2", material: "10310155", desc: "Material 3", qtd: "62 PC", valor: 3720.00, data: "02/03/2026" },
-    { semana: "Sem 2", gerencia: "Gerência de Produção", area: "Produção - Linha 2", material: "10310155", desc: "Material 3", qtd: "1.916 PC", valor: 114960.00, data: "09/03/2026" },
-    { semana: "Sem 3", gerencia: "Gerência de Produção", area: "Produção - Linha 2", material: "10310155", desc: "Material 3", qtd: "2.614 PC", valor: 156840.00, data: "16/03/2026" },
-    { semana: "Sem 4", gerencia: "Gerência de Produção", area: "Produção - Linha 2", material: "10310155", desc: "Material 3", qtd: "1.106 PC", valor: 66360.00, data: "23/03/2026" },
-    { semana: "Sem 5", gerencia: "Gerência de Produção", area: "Produção - Linha 2", material: "10310155", desc: "Material 3", qtd: "1.215 PC", valor: 72900.00, data: "30/03/2026" },
-    ...Array.from({length: 15}, (_, i) => ({
-        semana: `Sem ${i % 5 + 1}`,
-        gerencia: i % 2 === 0 ? "Gerência de Manutenção" : "Gerência de Logística",
-        area: i % 2 === 0 ? "Manutenção Preventiva" : "Expedição",
-        material: `202050${i}`,
-        desc: `Item Extra ${i + 5}`,
-        qtd: `${(i + 1) * 10} UN`,
-        valor: (i + 1) * 150.00,
-        data: "10/02/2026"
-    }))
-];
-
-let dadosFiltrados = [...bancoDeDados];
+let bancoDeDados = []; // Agora começa vazio, aguardando o banco de dados!
+let dadosFiltrados = [];
 let paginaAtual = 1;
 const itensPorPagina = 10;
 
 const tableBody = document.getElementById('tableBody');
 const paginationControls = document.getElementById('paginationControls');
 
+// 1. NOVA FUNÇÃO: Vai no Backend buscar os dados reais
+async function carregarDadosDoBanco() {
+    try {
+        // Conecta na rota que os meninos do Backend criaram (localhost:5000)
+        const resposta = await fetch('http://127.0.0.1:5000/api/custos');
+        const dadosReais = await resposta.json();
+
+        // 2. MAPEAMENTO: Traduz os dados do MySQL para o formato que a tabela entende
+        bancoDeDados = dadosReais.map(item => {
+            // O MySQL de vocês formata o valor como texto (ex: "R$ 5.000,00"). 
+            // Esse bloco limpa o texto para transformar em número puro (5000.00) para o JavaScript conseguir somar
+            let valorNumerico = 0;
+            if (typeof item.VALOR === 'string') {
+                valorNumerico = parseFloat(item.VALOR.replace('R$ ', '').replace(/\./g, '').replace(',', '.'));
+            } else if (item.valor) {
+                valorNumerico = parseFloat(item.valor);
+            }
+
+            return {
+                semana: "Sem 1", // Como a view atual não retorna semana, usamos um placeholder
+                gerencia: item.CATEGORIA || "Geral", // Ligamos Categoria na coluna Gerência
+                area: item.USUÁRIO || "Área Operacional", // Quem lançou fica na coluna Área
+                material: item.ID ? String(item.ID).padStart(8, '0') : "00000000",
+                desc: item.LANÇAMENTO || item.descricao || "Item sem descrição",
+                qtd: "1 UN", // A view atual não retorna quantidade, colocamos um padrão
+                valor: isNaN(valorNumerico) ? 0 : valorNumerico,
+                data: item.DATA || item.data_lancamento || "01/01/2026"
+            };
+        });
+
+        // Copia os dados que chegaram para a variável de filtro e manda desenhar a tela
+        dadosFiltrados = [...bancoDeDados];
+        renderTable();
+
+    } catch (erro) {
+        console.error("Erro ao conectar com o Backend:", erro);
+        // Fallback: Se o banco/Flask estiver desligado, avisa o usuário
+        alert("Não foi possível buscar os dados. Verifique se o Backend (Flask) está rodando na porta 5000!");
+    }
+}
+
+// 3. FUNÇÕES DE RENDERIZAÇÃO E PAGINAÇÃO (Mantidas iguais ao seu design)
 function renderTable() {
     if (!tableBody) return;
     tableBody.innerHTML = "";
@@ -81,6 +101,7 @@ window.irParaPagina = (n) => {
     renderTable();
 };
 
+// 4. FUNÇÕES DE FILTRO (Mantidas iguais)
 window.limparFiltros = () => {
     document.getElementById('searchInput').value = "";
     document.getElementById('selGerencia').value = "Todas";
@@ -95,8 +116,7 @@ function aplicarFiltros() {
     const area = document.getElementById('selArea').value;
     const periodo = document.getElementById('selPeriodo').value;
 
-    // Mapa para converter o texto do Select em número da data
-    const mesesMap = { "Jan": "01", "Fev": "02", "Mar": "03" };
+    const mesesMap = { "Jan": "01", "Fev": "02", "Mar": "03", "Abr": "04" };
 
     dadosFiltrados = bancoDeDados.filter(item => {
         const matchBusca = item.material.includes(busca) || item.desc.toLowerCase().includes(busca);
@@ -117,10 +137,13 @@ function aplicarFiltros() {
     renderTable();
 }
 
+// 5. INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', () => {
     ['searchInput', 'selGerencia', 'selArea', 'selPeriodo'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('input', aplicarFiltros);
     });
-    renderTable();
+    
+    // IMPORTANTE: Em vez de desenhar a tabela direto, ele vai no Banco primeiro!
+    carregarDadosDoBanco();
 });

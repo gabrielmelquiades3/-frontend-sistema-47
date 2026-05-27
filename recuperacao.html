@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Verificação de Código</title>
+ 
+</head>
+<body>
+  
+    <div class="logo-icon">
+      <img src="logo/logo (2).png" width="32" height="32" alt="Logo" style="object-fit: contain; border-radius: 4px;">
+    </div>
+  
+    <div class="container">
+    <h2>DIGITE O CÓDIGO ENVIADO NO EMAIL</h2>
+    <div class="code-inputs">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+    </div>
+    <a href="digitarsenha.html"><button class="btn btn-primary" onclick="validarCodigo()">AVANÇAR</button></a>
+    <button class="btn btn-secondary" onclick="reenviarCodigo()">REENVIAR CÓDIGO</button>
+    <a href="login.html"> <button id="botaovoltar" type="button">voltar</button></a>
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <script>
+  function validarCodigo() {
+      const inputs = document.querySelectorAll('.code-inputs input');
+      let codigo = '';
+      inputs.forEach(input => codigo += input.value);
+
+      if (codigo.length < 6) {
+        alert("Por favor, preencha todos os 6 dígitos.");
+      } else {
+        alert("Código válido! Prosseguindo...");
+      }
+    }
+
+    function reenviarCodigo() {
+      const mensagem = document.getElementById("mensagem");
+      mensagem.textContent = "Código reenviado";
+    }
+
+    // Avança automaticamente para o próximo campo
+    const inputs = document.querySelectorAll('.code-inputs input');
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+    });
+</script>
+</body>
+</html>

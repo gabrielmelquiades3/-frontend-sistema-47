@@ -1,0 +1,57 @@
+
+
+    .code-inputs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .code-inputs input {
+      width: 40px;
+      height: 50px;
+      text-align: center;
+      font-size: 20px;
+      border: 2px solid #000000;
+      border-radius: 6px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background-color: #3639ffb2;
+      color: #fff;
+      border: none;
+    }
+
+    .btn-secondary {
+      background-color: #ccc;
+      color: #000;
+      border: none;
+    }
+
+    .mensagem {
+      font-size: 13px;
+      color: rgb(0, 0, 0);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 95%;
+      }
+      .code-inputs input {
+        width: 35px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }

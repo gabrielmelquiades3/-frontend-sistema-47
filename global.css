@@ -1,0 +1,226 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+ 
+  max-width: 400px;
+  width: 90%;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.logo {
+  padding: 12px;
+}
+
+img {
+  width: 55px;
+  height: 55px;
+}
+
+
+.loginesenha {
+  color: #000;
+  font-size: 14px;
+  text-align: left;
+  padding-bottom: 4px;
+  font: bold 14px Arial, sans-serif;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font: bold 32px Arial, sans-serif;
+  text-align: center;
+
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font: bold 18px Arial, sans-serif;
+  text-align: center;
+
+}
+
+
+p{
+    text-align: center;
+    color: #000;
+}
+
+
+input {
+  color: #fff;
+  background: #09008a;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+button {
+  width: 100%; 
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 12px;
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#butaocadastro {
+  background: #000000;
+  width: 100%; 
+  max-width: 120px;
+  padding: 12px;
+  margin: 10px auto;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#butaocadastro:hover {
+  background: #3f4cfa;
+}
+
+#botaovoltar {
+  background: #000000;
+  width: 100%; 
+  max-width: 100px;
+  padding: 12px;
+  margin: 10px auto;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#botaovoltar:hover {
+  background: #3f4cfa;
+}
+
+#butaocodigo {
+  background: #000000;
+  width: 90%; 
+  max-width: 150px;
+  padding: 12px;
+  margin: 10px auto;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#butaocodigo:hover {
+  background: #3f4cfa;
+}
+
+#butaofacalogin {
+ background: #000000;
+  width: 100%; 
+  max-width: 100px;
+  padding: 12px;
+  margin: 19px auto;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#butaofacalogin:hover {
+  background: #3f4cfa;
+}
+
+#senha{
+    font-weight: bold;
+    color: #1e40af;
+}
+
+
+
+.quadrado {
+  
+  width: 140px;
+  height: 45px;
+  border-radius: 15px;
+  background: #000;
+  color: #fff;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  margin: auto;
+  text-align: center;
+}
+
+.quadrado:hover {
+  background: #3f4cfa;
+}
+
+
+
+button:hover {
+  background: #3f4cfa;
+}
+
+a {
+  display: block;
+  margin-top: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+ .erro {
+      color: red;
+      font-size: 13px;
+      text-align: left;
+      margin-top: -5px;
+      margin-bottom: 10px;
+    }
+
+    
